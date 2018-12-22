@@ -1,0 +1,45 @@
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="updatecategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改分类信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="updatacategoryname">分类名称</label>
+                        <input type="text" class="form-control" id="updatacategoryname" placeholder="新增分类名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="updatacategorypath">路径</label>
+                        <input type="text" class="form-control" id="updatacategorypath" placeholder="路径">
+                    </div>
+                    <div class="form-group">
+                        <label for="datacategorysort">优先级</label>
+                        <input type="text" class="form-control" id="updatacategorysort" placeholder="1-100/值越大越靠前">
+                    </div>
+
+                <div id="ifnav">
+
+                </div>
+                </form>
+            </div>
+            <input type="hidden" id="hidden">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="updatecategory();">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,93 @@
+@import "common.css";
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#boss{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%; /*IE6不识别min-height*/
+    position: relative;
+}
+.section{
+    /*padding-bottom: X( --- X大于等于footer的高度 ---   ) */
+    padding-bottom: 150px;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.article{
+    height: auto !important;
+}
+#comments {
+    /*border: 1px solid #eee;*/
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.backTxtarea {
+    display: none;
+    height: 80px;
+    margin-bottom: 50px
+}
+
+.backTxtarea textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    word-break: break-word;
+    overflow-x:hidden
+}
+
+.bigUl {
+    margin-top: 30px !important;
+}
+
+.bigUl, .bigUl ul {
+    list-style: none;
+}
+.bigUl ul{
+    margin-left: 35px;
+}
+.bigUl li,.bigUl ul li {
+    position: relative;
+    /*border: 1px solid #ddd;*/
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.bigUl li img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: -35px;
+}
+
+.bigUl li{
+    border-top: 1px solid #eee;
+    padding-right: 5px;
+    color: #666;
+}
+.bigUl p,.bigUl ul li p {
+    margin: 0;
+    padding: 5px;
+}
+
+.bigUl .backTxt {
+    word-break: break-word;
+}
+
+.bigUl .reBack {
+    text-align: right;
+    padding: 3px 10px;
+}
+.about-author{
+    padding: 20px;
+}

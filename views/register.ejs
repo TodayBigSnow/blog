@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="墨屋,mowu,取墨小屋,qumoxiaowu,取墨,qumo,取墨豪，qumohao">
+    <meta name="description" content="因为年轻，所以无畏前行。坚持努力，坚信美好，爱生活，爱前端 -- 网站作者：取墨豪">
+    <title><%= title %></title>
+    <link rel="shortcut icon" href="images/moLogo.png">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <div id="container" style="z-index: 1">
+        <div id="page" class="clearfix">
+            <div id="content" class="row">
+                <div class="col-md-6  whheight left">
+                    <img  src="images/loading1.gif" data-src="images/touxiang.jpg" class="img-responsive wh" style="opacity: .9">
+                </div>
+                <div class="col-md-6  whheight  right" style="padding:10px">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="repassword">确认密码</label>
+                        <input type="password" class="form-control" id="repassword" placeholder="rePassword">
+                    </div>
+                    <div class="checkbox whpadding">
+                        <label>
+                            <input type="checkbox" style="display: inline-block" id="importantInfo"> 我已阅读相关条款
+                        </label>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" id="registerSubmit">注册</button>
+                        <a href="/login">
+                            <button type="button" class="btn btn-default" style="margin-right: 10px">已注册去登录</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--canvas1-->
+    <div id="site-landing" style="height: 100%;width: 100%;position: absolute;top: 0;left: 0; background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);"></div>
+</body>
+</html>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/underscore.js/1.9.0/underscore-min.js"></script>
+<script src="js/imgloading.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="canvas/canvas1/js/polygonizr.min.js"></script>
+<script src="js/register.js"></script>

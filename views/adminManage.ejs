@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="墨屋,mowu,取墨小屋,qumoxiaowu,取墨,qumo,取墨豪，qumohao">
+    <meta name="description" content="因为年轻，所以无畏前行。坚持努力，坚信美好，爱生活，爱前端 -- 网站作者：取墨豪">
+    <title><%= title %></title>
+    <link rel="shortcut icon" href="images/moLogo.png">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/adminManage.css">
+</head>
+
+<body class="home-template" style="min-width:1100px;">
+    <div id="boss">
+        <!--header-->
+        <% include common/header %>
+        <!--content-->
+        <section class="content-wrap section">
+            <div class="container">
+                <div class="row" id="maincontent">
+                    <div class="col-xs-2  whheight" style="padding: 0px">
+                        <ul id="myul">
+                            <li>
+                                <div class="ulfocus">
+                                    <p><span class="glyphicon glyphicon-home"></span></p>
+                                    <p>个人信息</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div >
+                                    <p><span class="glyphicon glyphicon-lock"></span></p>
+                                    <p>修改密码</p>
+                                </div>
+                            </li>
+                            <% if(locals.user.admin.rootAdmin){ %>
+                            <li onclick="getarticlelist()">
+                                <div>
+                                    <p><span class="glyphicon glyphicon-duplicate"></span></p>
+                                    <p>文章管理</p>
+                                </div>
+                            </li>
+                            <li onclick="getcategorylist()">
+                                <div>
+                                    <p><span class="glyphicon glyphicon-tags"></span></p>
+                                    <p>分类管理</p>
+                                </div>
+                            </li>
+                            <li onclick="getuserlist()">
+                                    <div>
+                                        <p><span class="glyphicon glyphicon-user"></span></p>
+                                        <p>用户管理</p>
+                                    </div>
+                                </li>
+                            <% }else{ %>
+                                <% if(locals.user.admin.articleAdmin){ %>
+                                <li onclick="getarticlelist()">
+                                    <div>
+                                        <p><span class="glyphicon glyphicon-duplicate"></span></p>
+                                        <p>文章管理</p>
+                                    </div>
+                                </li>
+                                <% } %>
+                                <% if(locals.user.admin.categoryAdmin){ %>
+                                <li onclick="getcategorylist()">
+                                    <div>
+                                        <p><span class="glyphicon glyphicon-tags"></span></p>
+                                        <p>分类管理</p>
+                                    </div>
+                                </li>
+                                <% } %>
+                                <% if(locals.user.admin.userAdmin){ %>
+                                <li onclick="getuserlist()">
+                                    <div>
+                                        <p><span class="glyphicon glyphicon-user"></span></p>
+                                        <p>用户管理</p>
+                                    </div>
+                                </li>
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="col-xs-10 whheight" style="overflow:hidden;padding: 0;border: 1px solid #ddd">
+                        <ol id="myol">
+                            <li class="olfocus">
+                                <div class="row" style="margin: 0">
+                                    <form method="post" action="/user/updateInfo/<%= locals.user._id %>"
+                                          enctype="multipart/form-data">
+                                        <div class="col-xs-9  whheight">
+                                            <h3>个人信息</h3>
+                                            <div class="form-group">
+                                                <label for="usernickname">昵称</label>
+                                                <input type="text" class="form-control" id="usernickname" placeholder="nickname" value="<%= locals.user.nickname %>" name="nickname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="usersignature">个性签名</label>
+                                                <input type="text" class="form-control" id="usersignature" placeholder="signature" value="<%= locals.user.signature %>" name="signature">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="userposition">工作岗位</label>
+                                                <input type="text" class="form-control" id="userposition" placeholder="position" value="<%= locals.user.position %>" name="position">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="usertel">社交账号:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-comment"></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="社交账号" value="<%= locals.user.tel %>" id="usertel" name="tel">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-default">确认修改</button>
+                                        </div>
+                                        <div class="col-xs-3  whheight" style="padding-top: 20px ;">
+                                            <div style="height: 150px;border: 1px solid #ddd;padding:5px;margin: auto" id="view">
+                                                <img src="/uploads/<%= locals.user.avatar %>" style="height: 100%;width: 100%" class="img-responsive">
+                                            </div>
+                                            <div  class="text-center" style="padding-top: 10px;">
+                                                <label for="file" class="btn btn-primary">修改头像
+                                                </label>
+                                                <input type="file" id="file" style="display: none;" onchange="viewImg(this)" name="avatar">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="col-xs-12">
+                                    <h3>修改密码</h3>
+                                    <form class="form-horizontal" >
+                                        <input type="hidden" value="<%=locals.user._id%>" id="user_id">
+                                        <input type="hidden" value="<%=locals.user.password%>" id="user_pass">
+                                        <div class="form-group">
+                                            <label for="oldpass" class="col-sm-2 control-label">旧密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="oldpass" placeholder="旧密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newpass" class="col-sm-2 control-label">新密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="newpass" placeholder="新密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="renewpass" class="col-sm-2 control-label">重复新密码</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="renewpass" placeholder="重复新密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="button" class="btn btn-default" onclick="changePassword()">确认修改</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <% if(locals.user.admin.rootAdmin){ %>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>文章管理</h3>
+                                        <div class="col-xs-3"></div>
+                                        <div class="col-xs-4 whpadding"><input type="text" class="form-control" id="articleKey" placeholder="搜索文章标题"></div>
+                                        <div class="col-xs-2 whpadding">
+                                            <button type="button" class="btn btn-danger" onclick="findArticle();">搜索</button>
+                                        </div>
+                                        <div class="col-xs-3"></div>
+                                        <p class="clearfix"></p>
+                                        <div id="articletable" class="clearfix"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>分类管理</h3>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addcategoryModal">添加分类
+                                        </button>
+                                        <div id="categorytable"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>用户管理</h3>
+                                        <div class="col-xs-3"></div>
+                                        <div class="col-xs-4 whpadding"><input type="text" class="form-control" id="userKey"  placeholder="搜索用户名"></div>
+                                        <div class="col-xs-2 whpadding">
+                                            <button type="button" class="btn btn-danger" onclick="findUser();">搜索</button>
+                                        </div>
+                                        <div class="col-xs-3"></div>
+                                        <p class="clearfix"></p>
+                                        <div id="userlisttable" class="clearfix"></div>
+                                    </div>
+                                </li>
+                            <% }else{ %>
+                                <% if(locals.user.admin.articleAdmin){ %>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>文章管理</h3>
+                                        <div class="col-xs-3"></div>
+                                        <div class="col-xs-4 whpadding"><input type="text" class="form-control" id="articleKey" placeholder="搜索文章标题"></div>
+                                        <div class="col-xs-2 whpadding">
+                                            <button type="button" class="btn btn-danger" onclick="findArticle();">搜索</button>
+                                        </div>
+                                        <div class="col-xs-3"></div>
+                                        <p class="clearfix"></p>
+                                        <div id="articletable" class="clearfix"></div>
+                                    </div>
+                                </li>
+                                <%}%>
+                                <% if(locals.user.admin.categoryAdmin){ %>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>分类管理</h3>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addcategoryModal">添加分类
+                                        </button>
+                                        <div id="categorytable"></div>
+                                    </div>
+                                </li>
+                                <%}%>
+                                <% if(locals.user.admin.userAdmin){ %>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <h3>用户管理</h3>
+                                        <div class="col-xs-3"></div>
+                                        <div class="col-xs-4 whpadding"><input type="text" class="form-control" id="userKey"  placeholder="搜索用户名"></div>
+                                        <div class="col-xs-2 whpadding">
+                                            <button type="button" class="btn btn-danger" onclick="findUser();">搜索</button>
+                                        </div>
+                                        <div class="col-xs-3"></div>
+                                        <p class="clearfix"></p>
+                                        <div id="userlisttable" class="clearfix"></div>
+                                    </div>
+                                </li>
+                                <%}%>
+                            <%}%>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--footer-->
+        <%include common/footer%>
+        <!--addcategoryModal-->
+        <% include modals/addcategoryModal %>
+        <!--updatecategoryModal-->
+        <% include modals/updatecategoryModal %>
+        <!--updatearticleModal-->
+        <% include modals/updatearticleModal %>
+        <!--updateuserInfoModal-->
+        <% include modals/updateuserInfoModal %>
+    </div>
+</body>
+</html>
+
+<script src="js/layer/layer.js"></script>
+<script src="js/pulgins/uploadImg.js"></script>
+<script src="js/adminManage.js"></script>

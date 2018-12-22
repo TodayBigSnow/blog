@@ -1,0 +1,21 @@
+@import "common.css";
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#boss{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%; /*IE6不识别min-height*/
+    position: relative;
+}
+.section{
+    /*padding-bottom: X( --- X大于等于footer的高度 ---   ) */
+    padding-bottom: 150px;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

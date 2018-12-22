@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="墨屋,mowu,取墨小屋,qumoxiaowu,取墨,qumo,取墨豪，qumohao">
+    <meta name="description" content="因为年轻，所以无畏前行。坚持努力，坚信美好，爱生活，爱前端 -- 网站作者：取墨豪">
+    <title><%= title %></title>
+    <link rel="shortcut icon" href="images/moLogo.png">
+    <link rel="stylesheet" href="css/articlepublish.css">
+</head>
+<body class="home-template">
+    <div id="boss">
+        <!--header-->
+        <% include common/header %>
+        <!--content-->
+        <form method="post" action="/article/add" enctype="multipart/form-data">
+            <section class="content-wrap section">
+                <div class="container" style="background-color: #fff">
+                    <div class="row" style="overflow: hidden;border: 1px solid #ddd">
+                        <div class="col-md-4 whheight" style="padding: 10px;">
+                            <div style="height: 200px;width: 300px;border: 1px solid #ddd;margin: auto" id="view">
+                            </div>
+                            <div style="text-align: center;margin-top: 10px;">
+                                <label for="file" class="btn btn-danger" style="width: 300px;">上传封皮图片
+                                </label>
+                                <input type="file" id="file" style="display: none;" onchange="viewImg(this)" name="img">
+                            </div>
+                        </div>
+                        <div class="col-md-8 " style="padding: 10px">
+                            <div class="form-group">
+                                <label for="articletitle">文章标题</label>
+                                <input type="text" class="form-control" id="articletitle" placeholder="请输入文章标题"
+                                       name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="selectsort">文章分类</label>
+                                <select class="form-control" id="selectsort" name="category_id">
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="articleauthor">文章作者</label>
+                                <input type="text" class="form-control" id="articleauthor" placeholder="请输入文章作者"
+                                       name="author">
+                            </div>
+                            <label>是否精选文章</label>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_jing" value="1" name=""> 是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_jing" value="0" checked> 否
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <textarea name="content" cols="30" rows="10" class="form-control" id="tex"
+                                  style="display:none;"></textarea>
+                        <div class="col-md-12 whpadding" >
+                            <div id="editor" class="whwidth"></div>
+                        </div>
+                    </div>
+                    <div class="row text-center" style="padding: 10px">
+                        <button type="submit" class="btn btn-lg btn-danger">确认发布</button>
+                    </div>
+                </div>
+            </section>
+        </form>
+        <!--footer-->
+        <% include common/footer %>
+    </div>
+</body>
+</html>
+
+<script src="js/pulgins/uploadImg.js"></script>
+<script type="text/javascript" src="js/pulgins/wangEditor.min.js"></script>
+<script src="js/publisharticle.js"></script>
+
+

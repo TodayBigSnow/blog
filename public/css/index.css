@@ -1,0 +1,59 @@
+@import "common.css";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.section{
+    /*padding-bottom: X( --- X大于等于footer的高度 ---   ) */
+    padding-bottom: 150px;
+    /*background-image: url("../uploads/avatar-1535526325093.jpg");*/
+    /*background-size: 100% 100%;*/
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.fluid-width-video-wrapper {
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.fluid-width-video-wrapper iframe,
+.fluid-width-video-wrapper object,
+.fluid-width-video-wrapper embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#iframe .tab>a{
+    text-decoration: none !important;
+}
+#iframe{
+    font-size: 28px !important;
+    font-family: '微软雅黑 !important'
+}
+
+#canvas{
+    width:100%;
+    height:150px;
+    overflow: hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    background-color: #1a1724;
+}
+.canvas-wrap{
+    position:relative;
+}
+div.canvas-content{
+    position:relative;
+    z-index:2000;
+    color:#fff;
+    text-align:center;
+}
